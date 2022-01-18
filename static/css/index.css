@@ -1,0 +1,75 @@
+/* Top Header Styling [start] */
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.top-header {
+	overflow: hidden;
+	background-image: linear-gradient(to bottom right, rgb(200, 200, 250), rgb(200, 250, 200), rgb(250, 200, 200));
+	position: fixed;
+	top: 0%;
+	width: 100%;
+}
+
+#logo {
+	display: block;
+	margin: 10px;
+	text-decoration: none;
+	font-family: Brush Script MT, 'Times New Roman', Times, serif;
+	font-style: italic;
+	font-weight: bolder;
+	letter-spacing: 4;
+	font-size: 50;
+	color: #153c4e;
+	-webkit-text-stroke: 1px white;
+	text-align: center;
+}
+
+/* Top Header Style [end] */
+
+
+
+
+
+form {
+  margin-top: 140px;	
+	margin-left: 80px;
+}
+
+label {
+  color: rgb(53, 59, 143);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+
+}
+
+.input-textarea {
+  font-family: Arial, sans-serif;
+	resize: vertical;
+}
+
+input[type=text], .input-textarea {
+  width: 40%;
+  padding: 12px 10px;
+	margin-top: 10px;
+  border: 1px solid rgb(187, 228, 205);
+  border-radius: 4px;
+}
+
+input[type=submit] {
+  width: 15%;
+  background-color: rgb(75, 202, 132);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin-top: 5px;
+  border-radius: 15px;
+}
+
+input[type=submit]:hover {
+  background-color: rgb(71, 184, 122);
+	cursor: pointer;
+}

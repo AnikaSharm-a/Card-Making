@@ -1,0 +1,38 @@
+<html>
+
+	<head>
+	
+		<title>eGcards</title>
+	
+	   <link rel="stylesheet" href="/static/css/homepage.css"/>
+	
+	</head>
+
+	<body>
+	
+		<div class = "top-header">
+			<a id = logo href = "/home"> eGcards </a>
+		</div>
+
+		<div class = "content">
+
+			<h2> Create a personalized eCard using your own unique photograph and special greetings. </h2>
+
+			<hr id= "hr1">
+
+			<p> Use eGcards to design, create and send a beautiful card you made in seconds to your family, friends or collegues. Choose your own photograph, or choose from our library, add your greeting, personalize and send! </p>
+
+			<button onclick= "take_to_form()"> Create a card </button>
+
+		</div>
+
+
+		<script>
+			function take_to_form() {
+				window.location.href = "/form"
+			}
+		</script>
+
+
+	</body>
+</html>

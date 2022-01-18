@@ -1,0 +1,87 @@
+<!--- THE FORM FOR GETTING THE INFO --->
+
+<html>
+  <head>
+    <title>Card Maker</title>
+
+    <link rel="stylesheet" href="/static/css/index.css" />
+
+    <!-- This is the javascript equivalent to a python import (importing jquery to use in js)-->
+    <!---
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script> --->
+  </head>
+    
+  <body>
+
+		<div class = "top-header">
+			<a id = logo href = "/home"> eGcards </a>
+		</div>
+
+
+    <form action="/create_card" method="post" enctype="multipart/form-data">
+
+      <label> Choose a photograph for your card: </label>
+
+			<input type="file" id="image" name="image" required/>
+
+			<br>
+			<br>
+			
+			<label for="bgcolour">Choose a background colour for your card:</label>
+
+			<input type="color" id="bgcolour" name="bgcolour"/>
+			
+			<br>
+			<br>
+
+			<label for="textcolour">Choose a colour for your card's text:</label>
+
+			<input type="color" id="textcolour" name="textcolour"/>
+			
+			<br>
+			<br>
+
+			<label for="body">Please enter the greeting for your card:</label>
+
+			<br>
+
+			<textarea class="input-textarea" id="body" name="body" placeholder="Your greeting here" rows="3" required></textarea>
+			
+			<br>
+			<br>
+
+			<input type="submit" value="Submit" />
+
+
+
+      <!--- The label for the image file (telling the user to select an image)--->  
+			<!---
+      <label for="image" class = "button"> Select a file --->
+        
+        <!--- The type of data they give us is a file, its id is "image" and its name (for the getting data function in main.py) is also "image"--->
+
+				<!---
+        <input onchange = "" type="file" id="image" name="image"
+        
+      </label> --->
+
+      <!--- Empty label which changes to the file name after the user has chosen an image
+			<label id= "image-name"></label> --->
+
+    </form>
+    
+
+    <!--- Changing the empty label next to the choose file button to represent the file name --->
+    <!---
+		<script>
+      $("#image").change(function(event){
+        let filename = event.target.files[0].name
+        
+        let imglabel = document.getElementById("image-name")
+        imglabel.textContent = filename
+      })
+    </script> --->
+
+  </body>
+</html>

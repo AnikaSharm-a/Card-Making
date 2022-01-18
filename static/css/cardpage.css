@@ -1,0 +1,46 @@
+html, body {
+	margin: 0px;
+	top: 0px;
+	left: 0px;
+}
+
+.img-div {
+  height: 100%;
+  float: left;
+  display: flex;
+  /* background: url() will be set in the javascript */
+  background-repeat: none;
+  background-clip: contain;
+}
+
+.text-container {
+  /* padding-top: 200px; */
+  display: table-cell;
+  vertical-align: middle;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  /* To prevent the text from touching the image. */
+  padding: 2em;
+}
+
+/* Styles that can center absolutely (doesn't take the image into account):
+
+    margin: 0px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+
+Styles that can center relatively (does not horizontally center):
+    display: table-cell;
+    vertical-align: middle;
+    height: 10em;
+
+*/
+
+#card-text {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+}

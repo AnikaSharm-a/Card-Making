@@ -1,0 +1,82 @@
+<!--- The actual creation of the card--->
+
+<html>
+
+  <head>
+    <!---Tab title--->
+    <title>
+      Your Card
+    </title>
+
+    <!-- This is the javascript equivalent to a python import (importing jquery to use in js)!-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+
+    <!--- Linking css to this html file --->
+    <link rel="stylesheet" href="/static/css/cardpage.css" />
+    
+  </head>
+
+  <body> 
+
+      <!-- 
+    One strategy:
+
+
+      Remove the contained image and just use a background image.
+      For the div below set the following css settings:
+       - background: url(<IMAGE PATH HERE>);
+       - background-repeat: none;
+       - background-clip: contain;
+
+      Div width should also be 50%
+
+      !-->
+    
+    <!--- The left side--->
+    <div class="img-div">
+        
+      <!--- The image--->
+      <image id="side-image" />
+
+    </div>
+    
+    <!--- The right side--->
+    <div id="text-container" class="text-container">
+        
+        <!--- The text--->
+        <pre id="card-text"> </pre>
+    </div>
+
+
+    <script>
+      function myFunction() {
+
+        let img = window.location.query
+        
+        let urlSearchParams = new URLSearchParams(window.location.search)
+        
+        let params = Object.fromEntries(urlSearchParams.entries())
+
+        let sideImage = document.getElementById("side-image")
+        sideImage.src = "/static/images/" + params.img
+
+        // "my string"[ start : characters to include ]
+        let cardId = params.img.substr(0, params.img.lastIndexOf("."))
+
+
+
+
+        $.getJSON("/card/" + cardId, function(data) {
+          let body = document.getElementById("card-text")
+          body.textContent = data.body
+					body.style.color = data.textcolour
+          
+          let textdiv = document.getElementById("text-container")
+          textdiv.style.backgroundColor = data.bgcolour
+        })}
+      myFunction()
+
+    </script>
+  </body>
+</html>

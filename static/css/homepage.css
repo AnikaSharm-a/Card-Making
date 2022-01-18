@@ -1,0 +1,73 @@
+/* Top Header Style [start] */
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.top-header {
+	overflow: hidden;
+	background-image: linear-gradient(to bottom right, rgb(200, 200, 250), rgb(200, 250, 200), rgb(250, 200, 200));
+	position: fixed;
+	top: 0%;
+	width: 100%;
+}
+
+#logo {
+	display: block;
+	margin: 10px;
+	text-decoration: none;
+	font-family: Brush Script MT, 'Times New Roman', Times, serif;
+	font-style: italic;
+	font-weight: bolder;
+	letter-spacing: 4;
+	font-size: 50;
+	color: #153c4e;
+	-webkit-text-stroke: 1px white;
+	text-align: center;
+}
+
+/* Top Header Style [end] */
+
+
+
+
+.content {
+	margin-top: 150px;
+	text-align: center;
+}
+
+#hr1 {
+	border: 0;
+	width: 70%;
+	height: 3px;
+	background: #095484;
+	background-image: linear-gradient(to right, white, #153c4e, white);
+}
+
+.content h2 {
+	margin: 10% 10% 5% 10%;
+	font-size: 40px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 300;
+}
+
+.content p {
+	margin: 5% 20%;
+	font-size: 20px;
+}
+
+.content button {
+	padding: 10px;
+	width: 15%;
+	background-color: rgb(173, 216, 255);
+	color: black;
+	font-size: 18px;
+	border-radius: 20px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.content button:hover {
+	background-color: rgb(120, 189, 255);
+	cursor: pointer;
+}

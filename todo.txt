@@ -1,0 +1,18 @@
+Initial to-do for card:
+
+1. set a max-width and max-height (perhaps some percentage of the screen width and height?) to crop the image the user has submitted.
+
+I think that users will think it is on them to recrop the image if you automatically crop it, but if you have the text spilling over then it looks like there was an error & your application is broken
+
+2. Solve bug regarding large amounts of text.
+
+==> Maybe have a max-width for the text as well and then wrap the text? (word-wrap: normal) <-- I think that is default.
+
+
+===================================
+Extra features to add to the card:
+
+Show a preview of the card (TBD) 
+Show sample images (TBD)
+Download the card as a pdf/png (TBD)
+Login (TBD) > register if new user
