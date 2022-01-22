@@ -24,6 +24,17 @@ html, body {
   padding: 2em;
 }
 
+
+#card-text {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+}
+
+
+
+
+
+
 /* Styles that can center absolutely (doesn't take the image into account):
 
     margin: 0px;
@@ -39,8 +50,3 @@ Styles that can center relatively (does not horizontally center):
     height: 10em;
 
 */
-
-#card-text {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 20px;
-}

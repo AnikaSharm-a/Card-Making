@@ -2,6 +2,7 @@
 from replit import db
 from random import randint
 from flask import Flask, request, redirect, jsonify
+import os
 
 
 # Making your app an object of the Flask class
@@ -73,14 +74,20 @@ def create_card():
   # the filename is now the url.extension eg. "123456.jpg"
   filename = k + "." + extension
 
-  # save the image in our images folder with the general path 
+
+	# operating system module - handles files and folders
+	# - if "static/images" folder does not exist, make directory (mkdir) "static/images" 
+  if not os.path.exists("static/images"):
+	  os.mkdir("static/images")
+
+	# save image in that folder
   image.save("static/images/" + filename)
 
   ## FOR THE TEXT:
   # Save the text as a key value pair in the database with the same key as the image's url and the values from the form
   db[k] = {
     "bgcolour": request.form["bgcolour"],
-		"textcolour": request.form["textcolour"],
+	  "textcolour": request.form["textcolour"],
     "body": request.form["body"]
   }
 
