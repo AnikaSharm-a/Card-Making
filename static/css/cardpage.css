@@ -1,52 +1,44 @@
 html, body {
-	margin: 0px;
-	top: 0px;
-	left: 0px;
+	padding: 0;
+	margin: 0;
 }
 
-.img-div {
-  height: 100%;
-  float: left;
-  display: flex;
-  /* background: url() will be set in the javascript */
-  background-repeat: none;
-  background-clip: contain;
+body {
+  height: 100%
+}
+.container {
+	display: flex;
+  align-items: center;
 }
 
-.text-container {
-  /* padding-top: 200px; */
-  display: table-cell;
-  vertical-align: middle;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-  /* To prevent the text from touching the image. */
-  padding: 2em;
+#side-image {
+	width: 50%;
 }
-
 
 #card-text {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 20px;
+	width: 50%;
+	white-space: pre-wrap;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 5px;
+  font-family: Arial;
+  text-align: center;
 }
 
+button {
+	padding: 10px;
+	width: 15%;
+	background-color: rgb(173, 216, 255);
+	color: black;
+	font-size: 18px;
+	border-radius: 20px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	position: fixed;
+	bottom: 1em;
+	right: 1em;
+}
 
-
-
-
-
-/* Styles that can center absolutely (doesn't take the image into account):
-
-    margin: 0px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    text-align: center;
-
-Styles that can center relatively (does not horizontally center):
-    display: table-cell;
-    vertical-align: middle;
-    height: 10em;
-
-*/
+button:hover {
+	background-color: rgb(120, 189, 255);
+	cursor: pointer;
+}
