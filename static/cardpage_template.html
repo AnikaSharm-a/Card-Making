@@ -1,0 +1,39 @@
+<!--- Template for jinja to render --->
+ 
+<html>
+
+  <head>
+    <!---Tab title--->
+    <title>
+      Your Card
+    </title>
+
+    <!--- Linking css to this html file -->
+    <link rel="stylesheet" href="/static/css/cardpage.css" /> 
+    
+		
+		<style>
+			#card-text {
+				color: {{ textcolour }};
+			}
+			#container{
+				background: {{ bgcolour }};
+			}
+    </style>
+
+  </head>
+
+
+  <body> 
+
+  	<div class="container" id = "container">		
+  		<!--- The image-->
+  		<image id="side-image" src= "{{ imgSource }}"/>
+  		
+  		<!--- The text-->
+  		<pre id="card-text"> {{ body }} </pre>
+  	</div>
+
+  </body>
+	
+</html>

@@ -6,10 +6,6 @@
 
     <link rel="stylesheet" href="/static/css/index.css" />
 
-    <!-- This is the javascript equivalent to a python import (importing jquery to use in js)-->
-    <!---
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-    </script> --->
   </head>
     
   <body>
@@ -20,7 +16,7 @@
 
 
     <form action="/create_card" method="post" enctype="multipart/form-data">
-
+			
       <label> Choose a photograph for your card: </label>
 
 			<input type="file" id="image" name="image" required/>
@@ -46,42 +42,34 @@
 
 			<br>
 
-			<textarea class="input-textarea" id="body" name="body" placeholder="Your greeting here" rows="3" required></textarea>
+			<textarea class="input-textarea" id="body" name="body" placeholder="Your greeting here" rows="3" required></textarea>	
+
+			<br>
+			<br>
+<!-- 
+			<label for="sender_email">Please enter your email:</label>
+			<input type="email" id = "sender_email" name = "sender_email">
+			<br>
+			<br>
 			
+			<label for="sender_email_password">Please enter your password:</label>
+			<input type="password" id="sender_email_password" name="sender_email_password">
 			<br>
 			<br>
+
+			<label for="receiver_email">Please enter the email of the person you'd like to email the card to:</label>
+			<input type="email" id = "receiver_email" name = "receiver_email">
+			<br>
+			<br>
+
+			<label for="receiver_name">Please enter the name of the person you'd like to email the card to:</label>
+			<input type="text" id = "receiver_name" name = "receiver_name">
+			<br>
+			<br> -->
 
 			<input type="submit" value="Submit" />
 
-
-
-      <!--- The label for the image file (telling the user to select an image)--->  
-			<!---
-      <label for="image" class = "button"> Select a file --->
-        
-        <!--- The type of data they give us is a file, its id is "image" and its name (for the getting data function in main.py) is also "image"--->
-
-				<!---
-        <input onchange = "" type="file" id="image" name="image"
-        
-      </label> --->
-
-      <!--- Empty label which changes to the file name after the user has chosen an image
-			<label id= "image-name"></label> --->
-
     </form>
-    
-
-    <!--- Changing the empty label next to the choose file button to represent the file name --->
-    <!---
-		<script>
-      $("#image").change(function(event){
-        let filename = event.target.files[0].name
-        
-        let imglabel = document.getElementById("image-name")
-        imglabel.textContent = filename
-      })
-    </script> --->
 
   </body>
 </html>

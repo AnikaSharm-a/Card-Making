@@ -11,97 +11,90 @@
     <!-- This is the javascript equivalent to a python import (importing jquery to use in js)!-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
     </script>
-	<style>
-html, body {
-	padding: 0;
-	margin: 0;
-}
 
-body {
-  height: 100vh
-}
-.container {
-	display: flex;
-}
+    <!--- Linking css to this html file -->
+    <link rel="stylesheet" href="/static/css/cardpage.css" /> 
 
-#side-image {
-	width: 50%;
-}
-
-#card-text {
-	width: 50%;
-	white-space: pre-wrap;
-	margin-bottom: 0;
-	margin-top: 0;
-	padding: 5px;
-  font-family: Arial;
-}
-
-	</style>
-
-    <!--- Linking css to this html file --->
-    <!-- <link rel="stylesheet" href="/static/css/cardpage.css" /> !-->
-    
   </head>
 
   <body> 
 
-      <!-- 
-    One strategy:
+<!-- 		<h1 id="b">" "</h1>
+			 -->
 
-
-      Remove the contained image and just use a background image.
-      For the div below set the following css settings:
-       - background: url(<IMAGE PATH HERE>);
-       - background-repeat: none;
-       - background-clip: contain;
-
-      Div width should also be 50%
-
-      !-->
-    
-
-
-
-
-
-	<div class="container">		
-		<!--- The image--->
-		<image id="side-image" />
 		
-		<!--- The text--->
-		<pre id="card-text"> </pre>
-	</div>
+		<div class="container" id = "container">		
+			<!--- The image-->
+			<image id="side-image" />
+				
+			<!--- The text-->
+			<pre id="card-text"> </pre>
+		</div>
+	
+	
+	  <a id="img-download" data-inline="True" download>
+	    <button> Download Card</button>
+	  </a>
 
-
-    <script>
-      function myFunction() {
-
-        let img = window.location.query
-        
-        let urlSearchParams = new URLSearchParams(window.location.search)
-        
-        let params = Object.fromEntries(urlSearchParams.entries())
-
-        let sideImage = document.getElementById("side-image")
-        sideImage.src = "/static/images/" + params.img
-
-        // "my string"[ start : characters to include ]
-        let cardId = params.img.substr(0, params.img.lastIndexOf("."))
-
-
-
-
-        $.getJSON("/card/" + cardId, function(data) {
-          let body = document.getElementById("card-text")
-          body.textContent = data.body
-		      body.style.color = data.textcolour
-		      body.style.backgroundColor = data.bgcolour
 		
-		      document.body.backgroundColor = data.bgcolour;
-        })}
-      myFunction()
+<!-- 	
+	  <a id="img-email" data-inline="True">
+	    <button> Email Card</button>
+	  </a>
+ -->
 
-    </script>
+		
+  	<script>
+
+			// WONT WORK FOR SOME REASON????????
+
+			// document.GetElementById("b").textContent = "Hello world"
+
+
+			
+      let params;			
+						
+			// getting the file name from query string
+			let img = window.location.query
+			
+			let urlSearchParams = new URLSearchParams(window.location.search)
+			
+			params = Object.fromEntries(urlSearchParams.entries())
+
+			
+
+			// the button link tag
+			let dlLink = document.getElementById("img-download")
+			// the link on the download button
+			dlLink.href = "/card_image/" + params.img
+
+			// // the button link tag
+			// let dlLink = document.getElementById("img-email")
+			// // the link on the send email button
+			// dlLink.href = "/sendemail/" + params.img
+
+
+			
+			// setting the image to be the image file
+			let sideImage = document.getElementById("side-image")
+			sideImage.src = "/static/images/" + params.img
+
+			
+			// "my string"[ start : characters to include ]
+			let cardId = params.img.substr(0, params.img.lastIndexOf("."))
+
+			
+			// setting all other elements of the card
+			$.getJSON("/card/" + cardId, function(data) {
+				let text = document.getElementById("card-text")    
+				text.textContent = data.body					
+				text.style.color = data.textcolour
+				let box = document.getElementById("container")
+				box.style.backgroundColor = data.bgcolour
+				}
+			)
+
+  	</script>
+		
   </body>
 </html>
