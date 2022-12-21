@@ -1,7 +1,7 @@
 # Imports
+from clsEC import ecard
 from replit import db
-from random import randint
-from flask import Flask, request, redirect, jsonify, render_template
+from flask import Flask, redirect, jsonify
 from jinja2 import Template
 import imgkit
 import os
@@ -9,9 +9,9 @@ import os
 # import ssl
 # from email.mime.text import MIMEText
 # from email.utils import formataddr
-# from email.mime.multipart import MIMEMultipart 
-# from email.mime.base import MIMEBase  
-# from email import encoders  
+# from email.mime.multipart import MIMEMultipart
+# from email.mime.base import MIMEBase
+# from email import encoders
 
 
 # to run before server startup:
@@ -20,34 +20,6 @@ os.system("install-pkg wkhtmltopdf")
 
 # Making your app an object of the Flask class
 app = Flask(__name__, static_folder="static", static_url_path="/static")
-
-
-
-
-# Making the number for the key in db
-def makeKey():
-
-  # Creating the random 6 character number
-  # zfill fills the number (less than 6 digits) with zeroes in front of it
-  k = str(randint(0,100000)).zfill(6)
-
-  # checks to make sure there is no repeat
-  check = db.prefix(k) # prefix method returns nothing if the number is unique
-  
-  # if check is not nothing, keep making numbers until it is nothing
-  while len(check) != 0:
-    k = str(randint(0,100000)).zfill(6)
-    check = db.prefix(k)
-
-  # Setting the key to an empty string to get the key into the db
-  db[k] = ""
-
-  return k
-
-
-
-	
-
 
 # The route() function of the Flask class tells the application which URL should call the associated function
 # @app.route(rule, options)
@@ -59,12 +31,9 @@ def makeKey():
 def give_homepage():
 	return redirect("/home")
 
-@app.route("/home") 
-def homepage(): 
+@app.route("/home")
+def homepage():
 	return app.send_static_file('homepage.html')
-
-
-
 
 @app.route("/form")
 def give_form():
@@ -74,56 +43,19 @@ def give_form():
 
 
 
-	
+
 # Handling file upload in Flask needs an HTML form with its enctype attribute set to ‘multipart/form-data’, posting the file to a URL. The URL handler fetches file from request.files[] and saves it to the desired location.
 
 
-	
-# after user fills out form 
+ec = ecard()
+
+# after user fills out form
 @app.route("/create_card", methods=["POST"])
 def create_card():
-
-  ## FOR THE IMAGE:
-  # gets the image file from the form
-	image = request.files["image"]
-
-  # gets the type of image (png,jpeg etc.) by taking the image's actual filename and splitting it at the "." and taking the last item (the extension)
-	extension = image.filename.split(".")[-1]
-
-  # make a name for the image
-	k = makeKey()
-
-  # the filename is now the url.extension eg. "123456.jpg"
-	fn = k + "." + extension
-
-
-	# operating system module - handles files and folders
-	# - if "static/images" folder does not exist, make directory (mkdir) "static/images" 
-	if not os.path.exists("static/images"):
-		os.mkdir("static/images")
-
-	# save image in that folder
-	image.save("static/images/" + fn)
-
-  ## FOR THE TEXT:
-  # Save the text as a key value pair in the database with the same key as the image's url and the values from the form
-
-	
-	db[k] = {
-		"bgcolour": request.form["bgcolour"],
-		"textcolour": request.form["textcolour"],
-		"body": request.form["body"],
-		# "sender_email": request.form["sender_email"],
-		# "password": request.form["sender_email_password"],
-		# "receiver_email": request.form["receiver_email"],
-		# "receiver_name": request.form["receiver_name"]
-  }
-
+	fn = ec.createCard()
 	return redirect("/card?img=" + fn)
-	
 
 
-	
 # Give the user the card
 @app.route("/card")
 def card():
@@ -131,8 +63,8 @@ def card():
 
 
 
-	
-# Get the info from the database 
+
+# Get the info from the database
 @app.route("/card/<string:card_id>")
 def get_info(card_id):
   return jsonify(dict(db[card_id]))
@@ -143,17 +75,17 @@ def get_info(card_id):
 
 # For jinja to make a card using the data from user
 def build_card_html(values):
-	
+
   template_text = open("static/cardpage_template.html").read()
   template = Template(template_text)
-		
+
   html = template.render(**values)
-	
+
   return html
-  
 
 
-	
+
+
 
 # From the imgkit url
 @app.route("/card_static/<string:card_fn>")
@@ -172,25 +104,25 @@ def card_static(card_fn):
   # img = values["imgSource"]
 
   html = build_card_html(values)
-	
+
 	# returning the card image file
   return html
 
 
 
 
-	
+
 # From the download button in cardpage
 @app.route("/card_image/<string:card_fn>")
 def card_image(card_fn):
 	# converts urls to image files
   imgkit.from_url("https://card-making.sharmaanika.repl.co/card_static/" + card_fn, "static/dist/card_" + card_fn)
-	
+
 	# sends user the file
   return app.send_static_file("dist/card_" + card_fn)
 
 
-	
+
 
 
 
@@ -198,12 +130,12 @@ def card_image(card_fn):
 # def sendemail(card_fn):
 # 	# converts urls to image files
 # 	imgkit.from_url("https://card-making.sharmaanika.repl.co/card_static/" + fn, "static/dist/card_" + fn)
-	
+
 # 	# User configuration
 
 # 	# Change following fields to input from user
-	
-# 	sender_email = "sender_email" 
+
+# 	sender_email = "sender_email"
 # 	sender_name = "sender_name"
 # 	password = "sender_email_password"
 # 	receiver_emails = ["receiver_email"]
@@ -217,7 +149,7 @@ def card_image(card_fn):
 
 # 	filename = "dist/card_" + card_fn
 
-	
+
 # 	for receiver_email, receiver_name in zip(receiver_emails, receiver_names):
 # 		print("Sending the email...")
 # 		# Configurating user's info
@@ -228,8 +160,8 @@ def card_image(card_fn):
 
 # 		msg.attach(MIMEText(email_body, 'html'))
 
-		
-		
+
+
 # 		try:
 # 			# Open PDF file in binary mode
 # 			with open(filename, "rb") as attachment:
@@ -247,42 +179,42 @@ def card_image(card_fn):
 
 # 			msg.attach(part)
 
-		
-		
+
+
 # 		except Exception as e:
 # 			print(f'Oh no! We didn\'t find the attachment!\n{e}')
 # 			break
 
-		
-		
+
+
 # 		try:
 # 			# Creating a SMTP session | use 587 with TLS, 465 SSL and 25
 # 			server = smtplib.SMTP('smtp.gmail.com', 587)
-			
+
 # 			# Encrypts the email
 # 			context = ssl.create_default_context()
 # 			server.starttls(context=context)
-			
+
 # 			# We log in into our Google account
 # 			server.login(sender_email, password)
-			
+
 # 			# Sending email from sender, to receiver with the email body
 # 			server.sendmail(sender_email, receiver_email, msg.as_string())
-			
+
 # 			print('Email sent!')
-		
-		
+
+
 # 		except Exception as e:
 # 			print(f'Oh no! Something bad happened!\n{e}')
 # 			break
-		
-		
+
+
 # 		finally:
 # 			print('Closing the server...')
 # 			server.quit()
-	
-	
-	
+
+
+
 # 	return render_template('index.html')
 
 
