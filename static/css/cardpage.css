@@ -1,6 +1,7 @@
 html, body {
 	padding: 0;
 	margin: 0;
+	text-align: center;
 }
 
 body {
@@ -33,9 +34,10 @@ button {
 	font-size: 18px;
 	border-radius: 20px;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	position: fixed;
+	data-inline: True;
+/* 	position: fixed;
 	bottom: 1em;
-	right: 1em;
+	right: 1em; */
 }
 
 button:hover {
