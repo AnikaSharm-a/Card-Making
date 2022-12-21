@@ -19,9 +19,6 @@
 
   <body> 
 
-<!-- 		<h1 id="b">" "</h1>
-			 -->
-
 		
 		<div class="container" id = "container">		
 			<!--- The image-->
@@ -30,30 +27,24 @@
 			<!--- The text-->
 			<pre id="card-text"> </pre>
 		</div>
-	
-	
-	  <a id="img-download" data-inline="True" download>
+
+		<br>
+		<br>
+		
+	  <a id="img-download" download>
 	    <button> Download Card</button>
 	  </a>
 
-		
-<!-- 	
-	  <a id="img-email" data-inline="True">
-	    <button> Email Card</button>
-	  </a>
- -->
+	
+	  <button id="img-email" onclick=email_card()> Go Home</button>
+
 
 		
   	<script>
 
-			// WONT WORK FOR SOME REASON????????
-
-			// document.GetElementById("b").textContent = "Hello world"
-
-
 			
       let params;			
-						
+
 			// getting the file name from query string
 			let img = window.location.query
 			
@@ -61,17 +52,17 @@
 			
 			params = Object.fromEntries(urlSearchParams.entries())
 
+
+			
+			function email_card() {
+				window.location.href = "/"
+			}
 			
 
 			// the button link tag
 			let dlLink = document.getElementById("img-download")
 			// the link on the download button
 			dlLink.href = "/card_image/" + params.img
-
-			// // the button link tag
-			// let dlLink = document.getElementById("img-email")
-			// // the link on the send email button
-			// dlLink.href = "/sendemail/" + params.img
 
 
 			
